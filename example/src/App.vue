@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <transition name="fade" mode="out-in" @after-leave="afterLeave">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    afterLeave () {
+      window.scrollTo(0, 0)
+    }
+  }
 }
 </script>
-
-<style>
-</style>
