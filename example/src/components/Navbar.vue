@@ -2,7 +2,7 @@
   <nav class="nav">
     <div class="nav-left">
       <a href="/" class="logo">
-        <img src="../assets/logo.png" alt="" />
+        <img src="http://ovhjj0en3.bkt.clouddn.com/logo.png" alt="" />
         <span>goodboy</span>
       </a>
     </div>
