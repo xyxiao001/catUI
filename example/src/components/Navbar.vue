@@ -2,23 +2,23 @@
   <nav class="nav">
     <div class="nav-left">
       <a href="/" class="logo">
-        <img src="http://ovhjj0en3.bkt.clouddn.com/logo.png" alt="" />
+        <img src="http://ovhjj0en3.bkt.clouddn.com/logo1.png" alt="" />
         <span>goodboy</span>
       </a>
     </div>
     <div class="nav-right">
       <ul class="navbar">
         <li>
-          <router-link to="/" exact>首页</router-link>
+          <router-link :to="{ path: '/'}" exact>首页</router-link>
         </li>
         <li>
-          <router-link to="#1" exact>指南</router-link>
+          <router-link :to="{ name: 'Introduce'}" exact>指南</router-link>
         </li>
         <li>
-          <router-link to="#2" exact>组件</router-link>
+          <router-link :to="{ name: 'Component'}" exact>组件</router-link>
         </li>
         <li>
-          <router-link to="#3" exact>资源</router-link>
+          <router-link :to="{ name: 'Resource'}" exact>资源</router-link>
         </li>
       </ul>
     </div>
@@ -52,12 +52,13 @@ export default {
 
         img {
           display: inline-block;
-          height: 100%;
+          padding-top: 15px;
+          height: 40px;
         }
 
         span {
           display: inline-block;
-          margin-left: 0px;
+          margin-left: 10px;
           color: $B50;
           font-weight: bold;
           font-size: 16px;
@@ -85,7 +86,7 @@ export default {
           a {
             display: block;
             padding: 0 24px;
-            color: #383838;
+            color: $G100;
             transition: color .3s;
 
             &:hover {
