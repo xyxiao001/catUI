@@ -32,7 +32,7 @@ export default {
   }
 
   .page-header {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -40,6 +40,7 @@ export default {
     background-color: $G20;
     transition: all .3s;
     z-index: 100;
+    margin-bottom: 25px;
   }
 
   .collapse {
@@ -49,6 +50,12 @@ export default {
   }
 
   .container {
-    padding-top: 100px;
+    display: flex;
+    margin: 0 48px;
+    border-radius: 4px;
+    padding: 24px 0 0;
+    margin-bottom: 24px;
+    background-color: $G20;
+    min-height: 100vh;
   }
 </style>

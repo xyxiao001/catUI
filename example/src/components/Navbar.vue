@@ -1,10 +1,10 @@
 <template>
   <nav class="nav">
     <div class="nav-left">
-      <a href="/" class="logo">
+      <router-link :to="{path: '/'}" class="logo">
         <img src="http://ovhjj0en3.bkt.clouddn.com/logo1.png" alt="" />
         <span>goodboy</span>
-      </a>
+      </router-link>
     </div>
     <div class="nav-right">
       <ul class="navbar">
@@ -24,15 +24,6 @@
     </div>
   </nav>
 </template>
-
-<script>
-export default {
-  data: function () {
-    return {
-    }
-  }
-}
-</script>
 
 <style lang="scss">
   @import "../assets/color.scss";
