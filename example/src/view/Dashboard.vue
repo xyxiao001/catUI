@@ -10,7 +10,7 @@
       <h1>基于Clarity Design 开发的vue组件库</h1>
       <div class="show-btn">
         <div class="btn btn-start">
-          <router-link :to="{name: 'Component'}" >开始使用</router-link>
+          <router-link :to="{path: '/component/introduce'}" >开始使用</router-link>
         </div>
         <div class="btn btn-github">
           <a href="https://github.com/xyxiao001/catUI" target="_blank">Github</a>
@@ -36,6 +36,10 @@ export default {
 
 <style lang="scss" scoped>
   @import "../assets/color.scss";
+  .wraper {
+    background-color: $G20;
+  }
+
   .container {
     display: block;
     padding-top: 20vh;

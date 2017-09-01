@@ -12,13 +12,13 @@
           <router-link :to="{ path: '/'}" exact>首页</router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'Introduce'}" exact>指南</router-link>
+          <router-link :to="{ path: '/guide'}" exact>指南</router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'Component'}" exact>组件</router-link>
+          <router-link :to="{ path: '/component'}">组件</router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'Resource'}" exact>资源</router-link>
+          <router-link :to="{ path: '/resource'}" exact>资源</router-link>
         </li>
       </ul>
     </div>

@@ -8,7 +8,9 @@
         <Slider :lists="lists"></Slider>
       </div>
       <div class="main-doc">
-        <router-view></router-view>
+        <transition name="fade" mode="out-in">
+          <router-view></router-view>
+        </transition>
       </div>
 
     </section>
@@ -27,22 +29,33 @@ export default {
           text: '开发指南',
           childs: [
             {
-              name: '',
+              name: 'Introduce',
               text: '介绍'
             },
             {
-              name: '',
+              name: 'Install',
               text: '安装'
             },
             {
-              name: '',
+              name: 'QuickStart',
               text: '快速上手'
             }
           ]
         },
         {
-          name: '',
+          name: 'UpdateLog',
           text: '更新日志'
+        },
+        {
+          name: '',
+          text: '组件',
+          childs: [
+            {
+              name: 'Button',
+              text: 'Button',
+              tips: '按钮'
+            }
+          ]
         }
       ]
     }
