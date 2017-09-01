@@ -18,7 +18,7 @@ export default {
 }
 </script>
 <style lang="scss">
-  @import "./assets/color.scss";
+  @import "./components/cat/color.scss";
   .fade-enter-active, .fade-leave-active {
     transition: opacity .3s;
   }

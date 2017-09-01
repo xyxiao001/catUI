@@ -7,9 +7,14 @@ import router from './router'
 import DemoBox from '@/components/demobox'
 Vue.component('demo-box', DemoBox)
 
+// catUi组件
+import { Button, ButtonGroup } from '@/components/cat/Button'
+Vue.component('cat-button', Button)
+Vue.component('cat-button-gruop', ButtonGroup)
+
 import '@/assets/hjs.scss'
 import '@/assets/markdown.scss'
-import '@/assets/index.scss'
+import '@/components/cat/index.scss'
 
 Vue.config.productionTip = false
 

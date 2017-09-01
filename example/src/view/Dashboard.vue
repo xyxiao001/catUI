@@ -35,7 +35,7 @@ export default {
 
 
 <style lang="scss" scoped>
-  @import "../assets/color.scss";
+  @import "../components/cat/color.scss";
   .wraper {
     background-color: $G20;
   }

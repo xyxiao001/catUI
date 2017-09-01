@@ -26,7 +26,7 @@
 </template>
 
 <style lang="scss">
-  @import "../assets/color.scss";
+  @import "./cat/color.scss";
   .nav {
     display: flex;
     justify-content: space-between;

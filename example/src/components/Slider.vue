@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../assets/color.scss";
+  @import "./cat/color.scss";
   .cat-menu {
     outline: none;
     margin-bottom: 0;
