@@ -7,7 +7,7 @@
       <div class="cat-slider">
         <Slider :lists="lists"></Slider>
       </div>
-      <div class="main-doc">
+      <div class="at-markdown">
         <transition name="fade" mode="out-in">
           <router-view></router-view>
         </transition>
@@ -69,16 +69,23 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+  @import "../assets/color.scss";
   .cat-slider {
     width: 300px;
   }
 
-  .main-doc {
+  .at-markdown {
     padding: 0 40px 120px;
     margin-left: -1px;
+    width: 100%;
     min-height: 500px;
     overflow: hidden;
     border-left: 1px solid #e9e9e9;
+  }
+
+  a:hover {
+    color: $B50;
+    transition: color .3s ease;
   }
 </style>

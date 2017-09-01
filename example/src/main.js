@@ -4,6 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import DemoBox from '@/components/demobox'
+Vue.component('demo-box', DemoBox)
+
+import '@/assets/hjs.scss'
+import '@/assets/markdown.scss'
+import '@/assets/index.scss'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

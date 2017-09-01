@@ -14,6 +14,8 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "markdown-it-container": "^2.0.0",
     "vue": "^2.4.2",
     "vue-markdown-loader": "^2.1.0",
     "vue-router": "^2.7.0"

@@ -3,9 +3,38 @@ var fs = require('fs')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+var MarkdownItContainer = require('markdown-it-container')
+var striptags = require('./strip-tags')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
+}
+
+const vueMarkdown = {
+  preprocess: (MarkdownIt, source) => {
+    MarkdownIt.renderer.rules.table_open = function () {
+      return '<table class="table">'
+    }
+    MarkdownIt.renderer.rules.fence = utils.wrapCustomClass(MarkdownIt.renderer.rules.fence)
+    return source
+  },
+  use: [
+    [MarkdownItContainer, 'demo', {
+      validate: params => params.trim().match(/^demo\s*(.*)$/),
+      render: (tokens, idx) => {
+        if (tokens[idx].nesting === 1) {
+          const html = utils.convertHtml(striptags(tokens[idx + 1].content, 'script'))
+
+          return `<demo-box>
+                    <div slot="demo">${html}</div>
+                    <div slot="source-code">`
+        }
+
+        // closing tag
+        return '</div></demo-box>'
+      }
+    }]
+  ]
 }
 
 module.exports = {
@@ -74,7 +103,8 @@ module.exports = {
       },
       {
         test: /\.md$/,
-        loader: 'vue-markdown-loader'
+        loader: 'vue-markdown-loader',
+        options: vueMarkdown
       }
     ]
   }

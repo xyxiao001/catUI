@@ -16,8 +16,6 @@ import UpdateLog from '@/markdown/updateLog.md'
 // 组件
 import Button from '@/markdown/button.md'
 
-import '@/assets/index.scss'
-
 Vue.use(Router)
 
 export default new Router({
