@@ -4,8 +4,10 @@
     :class="[
       type ? `cat-btn-${type}` : '',
       size ? `cat-btn-${size}` : '',
-      disabled ? `cat-btn-disabled` : ''
+      disabled ? 'cat-btn-disabled' : '',
+      clicked ? `cat-btn-clicked` : '',
     ]"
+    @click="buttonClicked"
   >
     <span>
       <slot></slot>
@@ -16,6 +18,13 @@
 <script>
 export default {
   name: 'catButton',
+  data () {
+    return {
+      clicked: false,
+      timeout: '',
+      timeNumber: 250
+    }
+  },
   props: {
     type: {
       type: String,
@@ -29,6 +38,22 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  methods: {
+    buttonClicked (e) {
+      if (this.disabled) return
+      clearTimeout(this.timeout)
+      this.clicked = true
+      this.timeout = setTimeout(() => {
+        this.clicked = false
+      }, this.timeNumber)
+    }
+  },
+  create () {
+    clearTimeout(this.timeout)
+  },
+  destory () {
+    clearTimeout(this.timeout)
   }
 }
 </script>
@@ -60,6 +85,20 @@ export default {
     &:hover {
       color: $B50;
       border-color: $B50;
+    }
+
+    &-clicked:after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      bottom: -1px;
+      right: -1px;
+      border-radius: inherit;
+      border: 0 solid $B50;
+      opacity: 0.4;
+      animation: buttonEffect .4s;
+      display: block;
     }
   }
 
@@ -93,6 +132,10 @@ export default {
       border-color: $R30;
       color: $G20;
     }
+
+    &.cat-btn-clicked:after {
+      border-color: $R50;
+    }
   }
 
   .cat-btn-info {
@@ -104,6 +147,10 @@ export default {
       background-color: $A30;
       border-color: $A30;
       color: $G20;
+    }
+
+    &.cat-btn-clicked:after {
+      border-color: $A50;
     }
   }
 
@@ -117,6 +164,10 @@ export default {
       border-color: $GN30;
       color: $G20;
     }
+
+    &.cat-btn-clicked:after {
+      border-color: $GN50;
+    }
   }
 
   .cat-btn-disabled {
@@ -129,6 +180,17 @@ export default {
       color: #d2d2d2;
       border-color: #ececec;
       background-color: #f7f7f7;
+    }
+  }
+
+  @keyframes buttonEffect {
+    to {
+      opacity: 0;
+      top: -6px;
+      left: -6px;
+      bottom: -6px;
+      right: -6px;
+      border-width: 6px;
     }
   }
 </style>
