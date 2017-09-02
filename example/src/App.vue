@@ -19,6 +19,7 @@ export default {
 </script>
 <style lang="scss">
   @import "./components/cat/color.scss";
+  @import "./components/cat/iconfont/iconfont.css";
   .fade-enter-active, .fade-leave-active {
     transition: opacity .3s;
   }
