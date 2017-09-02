@@ -7,10 +7,17 @@ import router from './router'
 import DemoBox from '@/components/demobox'
 Vue.component('demo-box', DemoBox)
 
+import IconList from '@/components/IconList'
+Vue.component('icon-list', IconList)
+
 // catUi组件
+// Button
 import { Button, ButtonGroup } from '@/components/cat/Button'
 Vue.component('cat-button', Button)
 Vue.component('cat-button-gruop', ButtonGroup)
+
+import { Icon } from '@/components/cat/Icon'
+Vue.component('catIcon', Icon)
 
 import '@/assets/hjs.scss'
 import '@/assets/markdown.scss'

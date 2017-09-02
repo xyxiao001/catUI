@@ -3,11 +3,17 @@
     <ul class="cat-menu">
       <li class="cat-menu-item" v-for="item in lists">
         <a v-if="item.name === ''">{{ item.text }} <span v-if="item.tips">{{ item.tips }}</span></a>
-        <router-link v-else class="cat-item-link" :to="{ name: item.name}">{{ item.text }} <span v-if="item.tips">{{ item.tips }}</span></router-link>
+        <router-link v-else class="cat-item-link" exact :to="{ name: item.name}">{{ item.text }} <span v-if="item.tips">{{ item.tips }}</span></router-link>
         <ul class="cat-menu">
           <li class="cat-menu-item" v-for="i in item.childs">
             <a v-if="i.name === ''">{{ i.text }} <span v-if="i.tips">{{ i.tips }}</span></a>
-            <router-link v-else class="cat-item-link" :to="{ name: i.name}">{{ i.text }} <span  v-if="i.tips">{{ i.tips }}</span></router-link>
+            <router-link v-else class="cat-item-link" exact :to="{ name: i.name}">{{ i.text }} <span  v-if="i.tips">{{ i.tips }}</span></router-link>
+            <ul class="cat-menu">
+              <li class="cat-menu-item" v-for="child in i.childs">
+                <a v-if="child.name === ''">{{ child.text }} <span v-if="child.tips">{{ child.tips }}</span></a>
+                <router-link v-else class="cat-item-link" exact :to="{ name: child.name}">{{ child.text }} <span  v-if="child.tips">{{ child.tips }}</span></router-link>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>

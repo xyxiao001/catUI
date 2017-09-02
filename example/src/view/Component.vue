@@ -58,6 +58,11 @@ export default {
                   name: 'Button',
                   text: 'Button',
                   tips: '按钮'
+                },
+                {
+                  name: 'Icon',
+                  text: 'Icon',
+                  tips: '图标'
                 }
               ]
             }

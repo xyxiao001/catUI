@@ -1,6 +1,7 @@
 <template>
-  <button>
-  </button>
+  <div class="cat-btn-group">
+    <slot></slot>
+  </div>
 </template>
 
 <script>

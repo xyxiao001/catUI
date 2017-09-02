@@ -15,6 +15,7 @@ import UpdateLog from '@/markdown/updateLog.md'
 
 // 组件
 import Button from '@/markdown/button.md'
+import Icon from '@/markdown/icon.md'
 
 Vue.use(Router)
 
@@ -55,6 +56,11 @@ export default new Router({
           path: 'button',
           name: 'Button',
           component: Button
+        },
+        {
+          path: 'icon',
+          name: 'Icon',
+          component: Icon
         }
       ]
     },
