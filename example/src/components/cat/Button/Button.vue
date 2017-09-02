@@ -6,6 +6,7 @@
       size ? `cat-btn-${size}` : '',
       disabled ? 'cat-btn-disabled' : '',
       clicked ? `cat-btn-clicked` : '',
+      shape ? `cat-btn-${shape}` : ''
     ]"
     @click="buttonClicked"
   >
@@ -37,7 +38,8 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    }
+    },
+    shape: String
   },
   methods: {
     buttonClicked (e) {
@@ -47,6 +49,7 @@ export default {
       this.timeout = setTimeout(() => {
         this.clicked = false
       }, this.timeNumber)
+      this.$emit('click', e)
     }
   },
   create () {
@@ -62,7 +65,6 @@ export default {
   @import "../color.scss";
   .cat-btn {
     display: inline-block;
-    margin-bottom: 0;
     font-weight: 500;
     text-align: center;
     touch-action: manipulation;
@@ -71,7 +73,7 @@ export default {
     border: 1px solid transparent;
     white-space: nowrap;
     line-height: 1.15;
-    padding: 10px 16px;
+    padding: 8px 14px;
     font-size: 12px;
     border-radius: 4px;
     user-select: none;
@@ -81,6 +83,15 @@ export default {
     background-color: $G20;
     border-color: $G70;
     outline: none;
+
+    &-circle {
+      width: 28px;
+      padding: 0;
+      font-size: 14px;
+      text-align: center;
+      border-radius: 50%;
+      height: 28px;
+    }
 
     &:hover {
       color: $B50;
@@ -99,6 +110,28 @@ export default {
       opacity: 0.4;
       animation: buttonEffect .4s;
       display: block;
+    }
+
+    &-large {
+      padding: 10px 16px;
+
+      &.cat-btn-circle {
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+    }
+
+    &-small {
+      padding: 6px 12px;
+
+      &.cat-btn-circle {
+        padding: 0;
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+      }
     }
   }
 

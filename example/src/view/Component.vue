@@ -51,9 +51,15 @@ export default {
           text: '组件',
           childs: [
             {
-              name: 'Button',
-              text: 'Button',
-              tips: '按钮'
+              name: '',
+              text: 'Basic',
+              childs: [
+                {
+                  name: 'Button',
+                  text: 'Button',
+                  tips: '按钮'
+                }
+              ]
             }
           ]
         }
