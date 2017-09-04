@@ -10,6 +10,7 @@
       onlyIcon ? 'cat-btn-onlyIcon' : '',
       loading ? 'cat-btn-loading' : '',
     ]"
+    :type="htmlType"
     @click="buttonClicked"
   >
     <i class="cat-icon caticon" :class="`caticon-${icon}`" v-if="icon && !loading"></i>
@@ -52,6 +53,10 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    htmlType: {
+      type: String,
+      default: 'button'
     }
   },
   methods: {

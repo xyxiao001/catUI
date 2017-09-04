@@ -97,6 +97,7 @@
 | loading | 设置按钮的载入状态 | Boolean | `true`, `false` | false |
 | shape | 设置图标按钮形状 | String | `circle` | '' |
 | click | 点击事件, 由父组件传入触发 | Function | - | - |
+| html-type |	设置 button 原生的 type 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) |	String | button,submit,reset |button |
 
 
 <style lang="scss" scoped>
