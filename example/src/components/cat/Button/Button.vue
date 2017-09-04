@@ -6,10 +6,14 @@
       size ? `cat-btn-${size}` : '',
       disabled ? 'cat-btn-disabled' : '',
       clicked ? `cat-btn-clicked` : '',
-      shape ? `cat-btn-${shape}` : ''
+      shape ? `cat-btn-${shape}` : '',
+      onlyIcon ? 'cat-btn-onlyIcon' : '',
+      loading ? 'cat-btn-loading' : '',
     ]"
     @click="buttonClicked"
   >
+    <i class="cat-icon caticon" :class="`caticon-${icon}`" v-if="icon && !loading"></i>
+    <i class="cat-icon caticon caticon-loading caticon-spin" v-if="loading"></i>
     <span>
       <slot></slot>
     </span>
@@ -23,6 +27,7 @@ export default {
     return {
       clicked: false,
       timeout: '',
+      onlyIcon: false,
       timeNumber: 250
     }
   },
@@ -39,11 +44,19 @@ export default {
       type: Boolean,
       default: false
     },
-    shape: String
+    shape: {
+      type: String,
+      default: ''
+    },
+    icon: String,
+    loading: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     buttonClicked (e) {
-      if (this.disabled) return
+      if (this.disabled || this.loading) return
       clearTimeout(this.timeout)
       this.clicked = true
       this.timeout = setTimeout(() => {
@@ -52,8 +65,9 @@ export default {
       this.$emit('click', e)
     }
   },
-  create () {
+  created () {
     clearTimeout(this.timeout)
+    this.onlyIcon = !this.$slots.default
   },
   destory () {
     clearTimeout(this.timeout)
@@ -133,6 +147,16 @@ export default {
         font-size: 12px;
       }
     }
+
+    i {
+      font-size: 12px;
+    }
+  }
+
+  .cat-btn-onlyIcon {
+    i {
+      font-size: 14px;
+    }
   }
 
   .cat-btn-primary {
@@ -201,6 +225,10 @@ export default {
     &.cat-btn-clicked:after {
       border-color: $GN50;
     }
+  }
+
+  .cat-btn-loading {
+    cursor: auto;
   }
 
   .cat-btn-disabled {

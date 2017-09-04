@@ -59,4 +59,8 @@ export default {
     background-color: $G20;
     min-height: 100vh;
   }
+
+  a {
+    color: $B50;
+  }
 </style>

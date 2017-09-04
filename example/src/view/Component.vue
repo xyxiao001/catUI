@@ -8,7 +8,7 @@
         <Slider :lists="lists"></Slider>
       </div>
       <div class="at-markdown">
-        <transition name="fade" mode="out-in">
+        <transition name="fade" mode="out-in" @after-leave="afterLeave">
           <router-view></router-view>
         </transition>
       </div>
@@ -52,7 +52,7 @@ export default {
           childs: [
             {
               name: '',
-              text: 'Basic',
+              text: '基础组件',
               childs: [
                 {
                   name: 'Button',
@@ -65,6 +65,17 @@ export default {
                   tips: '图标'
                 }
               ]
+            },
+            {
+              name: '',
+              text: '表单组件',
+              childs: [
+                {
+                  name: 'Input',
+                  text: 'Input',
+                  tips: '输入框'
+                }
+              ]
             }
           ]
         }
@@ -74,6 +85,11 @@ export default {
   components: {
     Navbar,
     Slider
+  },
+  methods: {
+    afterLeave () {
+      window.scrollTo(0, 0)
+    }
   },
   mounted () {
   }

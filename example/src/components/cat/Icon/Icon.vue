@@ -2,7 +2,8 @@
   <i
     class="cat-icon caticon"
     :class="[
-     type ? `caticon-${type}` : ''
+     type ? `caticon-${type}` : '',
+     spin ? 'caticon-spin' : ''
     ]"
   ></i>
 </template>
@@ -14,13 +15,11 @@ export default {
     type: {
       type: String,
       default: ''
+    },
+    spin: {
+      type: Boolean,
+      default: false
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .cat-icon {
-    padding: 0 10px;
-  }
-</style>

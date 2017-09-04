@@ -97,8 +97,9 @@
 }
 
 .at-markdown>section>p {
-	padding: 0;
-	line-height: 1.7
+	color: rgba(0,0,0,.65);
+  font-size: 14px;
+  line-height: 1.8;
 }
 
 .at-markdown>section>p+p {

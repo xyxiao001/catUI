@@ -20,7 +20,47 @@
 <cat-button type="success">成功按钮</cat-button>
 <cat-button type="dashed">虚线按钮</cat-button>
 <cat-button type="text">文字按钮</cat-button>
-<cat-button shape="circle">圆</cat-button>
+```
+:::
+
+### 图标按钮
+注: 按钮和图标可以一起使用, shape控制按钮是否为圆型
+:::demo
+```html
+<cat-button shape="circle" icon="search"></cat-button>
+<cat-button icon="search"></cat-button>
+<cat-button type="primary" icon="search">搜索</cat-button>
+<cat-button icon="step-backward"></cat-button>
+<cat-button type="primary" icon="reload">点击重新加载</cat-button>
+
+```
+:::
+
+### 按钮加载状态
+注: 按钮加载状态loading 会阻止默认点击事件， 同时移除默认图标， 展示loading图标
+:::demo
+```html
+<cat-button shape="circle" loading></cat-button>
+<cat-button type="primary" loading>加载中</cat-button>
+
+```
+:::
+
+### 按钮组合
+注: 可以将多个按钮放进 cat-button-group 中形成一个组合按钮
+:::demo
+```html
+<cat-button-gruop>
+  <cat-button type="default">左</cat-button>
+  <cat-button type="default">中</cat-button>
+  <cat-button type="default">右</cat-button>
+</cat-button-gruop>
+
+<cat-button-gruop>
+  <cat-button type="default" icon="left">上一页</cat-button>
+  <cat-button type="default" icon="right">下一页</cat-button>
+</cat-button-gruop>
+
 ```
 :::
 
@@ -45,6 +85,7 @@
 ```
 :::
 
+
 ## Button 参数
 
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  |
@@ -52,7 +93,7 @@
 | type | 按钮的类型 | String | `default`, `primary`, `danger`, `info`, `success`, `dashed`, `text` | - |
 | size | 按钮的大小 | String | `large`, `small` | - |
 | disabled | 禁止点击 | Boolean | `true`, `false` | false |
-| icon | 按钮的图标类名，填入图标的 `classname` | String | 见文档 `Icon 图标` | - |
+| icon | 按钮的图标类名，填入图标的type属性 | String | 见文档 `Icon 图标` | - |
 | loading | 设置按钮的载入状态 | Boolean | `true`, `false` | false |
 | shape | 设置图标按钮形状 | String | `circle` | '' |
 | click | 点击事件, 由父组件传入触发 | Function | - | - |
@@ -61,5 +102,13 @@
 <style lang="scss" scoped>
   .cat-btn {
     margin: 0 8px 8px 0;
+  }
+
+  .cat-btn-group {
+    margin-right: 10px;
+
+    .cat-btn {
+      margin: 0;
+    }
   }
 </style>

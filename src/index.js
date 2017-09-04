@@ -4,4 +4,6 @@ import './index.scss'
 // 导入组件
 import Button from './components/Button'
 
-export { Button }
+export {
+  Button
+}
