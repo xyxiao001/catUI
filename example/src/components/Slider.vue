@@ -50,13 +50,14 @@ export default {
 
   .cat-menu-item {
     position: relative;
-    padding-left: 24px;
     font-size: 16px;
     text-overflow: ellipsis;
     overflow: hidden;
 
     a {
+      position: relative;
       display: block;
+      padding-left: 24px;
       color: $G100;
 
       span {
@@ -116,6 +117,16 @@ export default {
 
     .cat-menu-item {
       font-size: 90%;
+
+      a {
+        padding-left: 48px;
+      }
+
+      .cat-menu-item {
+        a {
+          padding-left: 60px;
+        }
+      }
     }
   }
 </style>

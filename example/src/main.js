@@ -19,6 +19,9 @@ Vue.component('cat-button-gruop', ButtonGroup)
 import { Icon } from '@/components/cat/Icon'
 Vue.component('catIcon', Icon)
 
+import { Input } from '@/components/cat/Input'
+Vue.component('catInput', Input)
+
 import '@/assets/hjs.scss'
 import '@/assets/markdown.scss'
 import '@/components/cat/index.scss'

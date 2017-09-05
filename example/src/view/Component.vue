@@ -115,4 +115,15 @@ export default {
     color: $B50;
     transition: color .3s ease;
   }
+
+  @media screen and (max-width: 600px) {
+    .container {
+      flex-wrap: wrap;
+      margin: 0;
+    }
+
+    .cat-slider {
+      width: 100%;
+    }
+  }
 </style>
