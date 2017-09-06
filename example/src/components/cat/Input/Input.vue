@@ -133,6 +133,7 @@ export default {
        border-radius: 4px;
        transition: all .3s;
        box-sizing: border-box;
+       -webkit-appearance: none;
 
        &::-moz-placeholder {
          color: $G70;
