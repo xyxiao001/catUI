@@ -27,7 +27,7 @@
 :::
 
 ### 三种大小
-注: 高度分别为 large  32px、 normal 28px 和 small 22px, 默认为normal
+注: 高度分别为 large  36px、 normal 32px 和 small 28px, 默认为normal
 :::demo
 ```html
 <cat-input v-model="value5" placeholder="小" size="small"></cat-input>

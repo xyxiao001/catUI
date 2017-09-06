@@ -22,6 +22,9 @@ Vue.component('catIcon', Icon)
 import { Input } from '@/components/cat/Input'
 Vue.component('catInput', Input)
 
+import { InputNumber } from '@/components/cat/InputNumber'
+Vue.component('catInputNumber', InputNumber)
+
 import '@/assets/hjs.scss'
 import '@/assets/markdown.scss'
 import '@/components/cat/index.scss'

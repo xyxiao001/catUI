@@ -116,12 +116,14 @@ export default {
   .cat-input {
     position: relative;
     display: inline-block;
+    width: 100%;
+    height: 100%;
     input, textarea {
        position: relative;
        display: inline-block;
-       padding: 4px 7px;
+       padding: 6px 7px;
        width: 100%;
-       height: 28px;
+       height: 32px;
        font-size: 12px;
        line-height: 1.5;
        color: rgba(0,0,0,.65);
@@ -159,6 +161,7 @@ export default {
       max-width: 100%;
       height: auto;
       vertical-align: bottom;
+      transition: all .0s;
     }
 
     i {
@@ -176,13 +179,13 @@ export default {
   }
 
   .cat-input-large input {
-    padding: 6px 7px;
-	  height: 32px;
+    padding: 8px 7px;
+	  height: 36px;
   }
 
   .cat-input-small input {
-    padding: 1px 7px;
-	   height: 22px;
+      padding: 4px 7px;
+	   height: 28px;
   }
 
   .cat-input-status-success {

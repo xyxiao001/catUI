@@ -74,6 +74,11 @@ export default {
                   name: 'Input',
                   text: 'Input',
                   tips: '输入框'
+                },
+                {
+                  name: 'InputNumber',
+                  text: 'InputNumber',
+                  tips: '数字输入框'
                 }
               ]
             }
