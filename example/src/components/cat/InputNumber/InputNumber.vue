@@ -19,6 +19,8 @@
       @focus="inputFocus"
       @enter="inputEnter"
       @input="inputChange"
+      @keydown.up.stop.prevent="increase"
+      @keydown.down.stop.prevent="decrease"
     />
     <div class="cat-input-number-control" v-if="controls & !disabled">
       <span class="icon-control icon-up" :class="[canIncrease ? '' : 'icon-disabled']" @click="increase" @mousedown="(e) => void e.preventDefault()">

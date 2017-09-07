@@ -104,6 +104,7 @@ export default {
 
 <style lang="scss" scoped>
   .cat-input-number {
+    margin: 10px 10px 0 0;
     width: 200px!important;
   }
 
