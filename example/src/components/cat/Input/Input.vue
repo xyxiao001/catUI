@@ -69,8 +69,8 @@ export default {
       default: 'off'
     },
     form: String,
-    maxlength: [Number, String],
-    minlength: [Number, String],
+    maxlength: Number,
+    minlength: Number,
     max: {},
     min: {},
     direction: String,

@@ -21,7 +21,7 @@
 
 <cat-input v-model="value3" placeholder="readonly" type="text" readonly></cat-input>
 
-<cat-input v-model="value4" placeholder="限制最多输入5个" type="text" maxlength="5"></cat-input>
+<cat-input v-model="value4" placeholder="限制最多输入5个" type="text" :maxlength="5"></cat-input>
 <p>{{ value4 }}</p>
 ```
 :::

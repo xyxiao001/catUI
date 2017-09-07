@@ -1,5 +1,10 @@
 <template>
-  <div class="cat-input-number">
+  <div class="cat-input-number"
+    :class="[
+      size ? `cat-input-number-${size}` : '',
+      disabled ? `cat-input-number-disabled` : ''
+   ]"
+  >
     <input
       type="number"
       :value="currentValue"
@@ -8,15 +13,17 @@
       @enter="inputEnter"
       @input="inputChange"
       :disabled="disabled"
+      :readonly="readonly"
+      :autofocus="autofocus"
       :size="size"
       :max="max"
       :min="min"
     />
-    <div class="cat-input-number-control" v-if="controls">
-      <span class="icon-control icon-up" @click="increase" @mousedown="(e) => void e.preventDefault()">
+    <div class="cat-input-number-control" v-if="controls & !disabled">
+      <span class="icon-control icon-up" :class="[canIncrease ? '' : 'icon-disabled']" @click="increase" @mousedown="(e) => void e.preventDefault()">
         <i class="cat-icon caticon caticon-up"></i>
       </span>
-      <span class="icon-control icon-down" @click="decrease" @mousedown="(e) => void e.preventDefault()">
+      <span class="icon-control icon-down" :class="[canDcrease ? '' : 'icon-disabled']" @click="decrease" @mousedown="(e) => void e.preventDefault()">
         <i class="cat-icon caticon caticon-down"></i>
       </span>
     </div>
@@ -28,7 +35,7 @@ export default {
   name: 'catInputNumber',
   data: function () {
     return {
-      currentValue: 0
+      currentValue: this.value
     }
   },
   props: {
@@ -47,42 +54,91 @@ export default {
     value: {
       default: 0
     },
-    disabled: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     size: String,
     controls: {
       type: Boolean,
       default: true
     },
-    debounce: {
-      type: Number,
-      default: 300
+    readonly: Boolean,
+    autofocus: Boolean
+  },
+  computed: {
+    canIncrease () {
+      return this.currentValue + this.step <= this.max
+    },
+    canDcrease () {
+      return this.currentValue - this.step >= this.min
     }
   },
-
   watch: {
     value (val) {
+      val = Number(val)
       this.setCurrentValue(val)
     }
   },
   methods: {
     increase (e) {
-      let val = this.currentValue + this.step
+      if (!this.canIncrease) return
+      let val = this.sum(this.currentValue, this.step, '+')
+      if (val > this.max) return
+      if (val < this.min) {
+        val = this.min
+      }
       this.setCurrentValue(val)
     },
     decrease (e) {
-      let val = this.currentValue - this.step
+      if (!this.canDcrease) return
+      let val = this.sum(this.currentValue, this.step, '-')
+      if (val < this.min) return
+      if (val > this.max) {
+        val = this.max
+      }
       this.setCurrentValue(val)
+    },
+    // 处理浮点数相加的误差
+    sum (a, b, type) {
+      if (type === '-') {
+        b = -b
+      }
+      let t1
+      let t2
+      let m
+      try {
+        t1 = a.toString().split('.')[1].length
+      } catch (e) {
+        t1 = 0
+      }
+      try {
+        t2 = b.toString().split('.')[1].length
+      } catch (e) {
+        t2 = 0
+      }
+      m = Math.pow(10, Math.max(t1, t2))
+      return (a * m + b * m) / m
     },
     inputChange (e) {
       if (this.disabled) return
-      let value = e.target.value
-      this.$emit('input', value)
-      this.$emit('change', value)
+      let val = Number(e.target.value)
+      this.$emit('input', val)
+      this.$emit('change', val)
     },
     inputFocus (e) {
       this.$emit('focus', e)
     },
     inputBlur (e) {
+      let val = Number(e.target.value)
+      if (val > this.max) {
+        val = this.max
+      }
+      if (val < this.min) {
+        val = this.min
+      }
+      this.setCurrentValue(val)
+      this.$emit('change', val)
       this.$emit('blur', e)
     },
     inputEnter (e) {
@@ -90,6 +146,9 @@ export default {
     },
     setCurrentValue (val) {
       if (val === this.currentValue) return
+      if ((typeof val) !== 'number') {
+        val = 0
+      }
       this.currentValue = val
       this.$emit('input', val)
       this.$emit('change', val)
@@ -131,6 +190,10 @@ export default {
         transition: all .3s;
         cursor: pointer;
 
+        &:hover {
+          opacity: 1;
+        }
+
         i {
           font-size: 12px;
           height: 12px;
@@ -158,6 +221,10 @@ export default {
           }
         }
       }
+
+      .icon-disabled {
+        cursor: not-allowed;
+      }
     }
 
     input {
@@ -172,6 +239,7 @@ export default {
       border-radius: 4px;
       padding: 0 7px;
       padding-right: 24px;
+      -webkit-appearance: none;
 
       &:hover, &:focus {
         border-color: $B50;
@@ -190,6 +258,45 @@ export default {
       opacity: 1;
     }
 
+    &-large {
+      input {
+        padding: 8px 7px;
+        height: 36px;
+      }
+
+      .cat-input-number-control {
+        .icon-control {
+          height: 18px;
+        }
+      }
+    }
+
+    &-small {
+      input {
+        padding: 4px 7px;
+        height: 28px;
+      }
+
+      .cat-input-number-control {
+        .icon-control {
+          height: 14px;
+        }
+      }
+    }
+
+    &-disabled {
+      input {
+        background-color: #f7f7f7;
+        opacity: 1;
+        cursor: not-allowed;
+        color: $G70;
+
+        &:hover, &:focus {
+          border-color: $G70;
+        }
+      }
+    }
+
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;
@@ -198,4 +305,5 @@ export default {
       -moz-appearance: textfield;
     }
   }
+
 </style>
