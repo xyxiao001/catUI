@@ -75,13 +75,14 @@
 | autofocus | 是否自动聚焦到输入框 | Boolean | - | false |
 
 ## InputNumber 事件
+注: 通过@focus 传入事件即可调用
 
-| 事件名称      | 说明          | 返回值  |
+| 事件名称 | 说明          | 返回参数  |
 |---------- |-------------- |---------- |
 | focus | 获得焦点时触发 | event |
 | blur | 失去焦点时触发 | event |
-| change | 绑定的值有变化时触发 | 输入框的值 |
-
+| change | 在 Input 值改变时触发 |	event |
+| enter | 在 Input 按下enter触发 |	event |
 
 
 <script>

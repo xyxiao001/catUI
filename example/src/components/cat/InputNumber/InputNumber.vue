@@ -8,16 +8,17 @@
     <input
       type="number"
       :value="currentValue"
-      @blur="inputBlur"
-      @focus="inputFocus"
-      @enter="inputEnter"
-      @input="inputChange"
+      :name="name"
       :disabled="disabled"
       :readonly="readonly"
       :autofocus="autofocus"
       :size="size"
       :max="max"
       :min="min"
+      @blur="inputBlur"
+      @focus="inputFocus"
+      @enter="inputEnter"
+      @input="inputChange"
     />
     <div class="cat-input-number-control" v-if="controls & !disabled">
       <span class="icon-control icon-up" :class="[canIncrease ? '' : 'icon-disabled']" @click="increase" @mousedown="(e) => void e.preventDefault()">
@@ -39,6 +40,14 @@ export default {
     }
   },
   props: {
+    value: {
+      type: Number,
+      default: 0
+    },
+    name: {
+      type: String,
+      default: ''
+    },
     step: {
       type: Number,
       default: 1
@@ -50,9 +59,6 @@ export default {
     min: {
       type: Number,
       default: -Infinity
-    },
-    value: {
-      default: 0
     },
     disabled: {
       type: Boolean,
