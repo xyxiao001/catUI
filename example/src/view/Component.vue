@@ -79,6 +79,11 @@ export default {
                   name: 'InputNumber',
                   text: 'InputNumber',
                   tips: '数字输入框'
+                },
+                {
+                  name: 'Radio',
+                  text: 'Radio',
+                  tips: '单选框'
                 }
               ]
             }

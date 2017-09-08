@@ -25,6 +25,11 @@ Vue.component('catInput', Input)
 import { InputNumber } from '@/components/cat/InputNumber'
 Vue.component('catInputNumber', InputNumber)
 
+import { Radio, RadioGroup, RadioButton } from '@/components/cat/Radio'
+Vue.component('catRadio', Radio)
+Vue.component('catRadioGroup', RadioGroup)
+Vue.component('catRadioButton', RadioButton)
+
 import '@/assets/hjs.scss'
 import '@/assets/markdown.scss'
 import '@/components/cat/index.scss'

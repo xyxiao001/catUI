@@ -18,6 +18,7 @@ import Button from '@/markdown/button.md'
 import Icon from '@/markdown/icon.md'
 import Input from '@/markdown/input.md'
 import InputNumber from '@/markdown/inputNumber.md'
+import Radio from '@/markdown/Radio.md'
 
 Vue.use(Router)
 
@@ -73,6 +74,11 @@ export default new Router({
           path: 'inputNumber',
           name: 'InputNumber',
           component: InputNumber
+        },
+        {
+          path: 'radio',
+          name: 'Radio',
+          component: Radio
         }
       ]
     },

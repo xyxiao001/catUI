@@ -43,7 +43,7 @@
 
         img {
           display: inline-block;
-          padding-top: 15px;
+          margin-top: 15px;
           height: 40px;
         }
 
