@@ -107,9 +107,5 @@
 
   .cat-btn-group {
     margin-right: 10px;
-
-    .cat-btn {
-      margin: 0;
-    }
   }
 </style>
