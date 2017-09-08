@@ -15,6 +15,7 @@
       :size="size"
       :max="max"
       :min="min"
+      ref="inputNumber"
       @blur="inputBlur"
       @focus="inputFocus"
       @enter="inputEnter"
@@ -153,6 +154,14 @@ export default {
       this.$emit('enter', e)
     },
     setCurrentValue (val) {
+      if (isNaN(val)) {
+        this.currentValue = 0
+        val = 0
+        this.$refs.inputNumber.value = 0
+        this.$emit('input', val)
+        this.$emit('change', val)
+        return
+      }
       if (val === this.currentValue) return
       if ((typeof val) !== 'number') {
         val = 0
