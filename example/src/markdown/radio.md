@@ -14,10 +14,28 @@
 ## 基本单选框
 
 最简单的用法。
+需要设置v-model绑定变量，选中意味着变量的值为相应 Radio label属性的值，label可以是String或者Number。
 
 :::demo
 ```html
-<cat-radio v-model="radio" label="1">选项一</cat-radio>
+<cat-radio v-model="radio" label="1">单选1</cat-radio>
+<cat-radio v-model="radio" label="2">单选2</cat-radio>
+
+<p>你喜欢吃啥</p>
+<cat-radio v-model="radio2" label="1">黄焖鸡</cat-radio>
+<cat-radio v-model="radio2" label="2">沙县小吃</cat-radio>
+```
+:::
+
+## 禁用状态
+
+不可用状态
+
+:::demo
+```html
+<cat-radio v-model="radio3" :label="1" :disabled="disabled3">禁用</cat-radio>
+<cat-radio v-model="radio3" :label="2" :disabled="disabled3">禁用</cat-radio>
+<cat-button size="small" type="danger" @click="disabled3 = !disabled3">切换禁用</cat-button>
 ```
 :::
 
@@ -26,18 +44,19 @@
 export default {
   data () {
     return {
-      radio: ''
+      radio: '',
+      radio2: '',
+      radio3: 1,
+      radio4: '',
+      disabled3: true
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .cat-radio {
-    margin: 10px 10px 0 0;
-  }
-
   p {
+    padding: 10px 0;
     line-height: 35px;
   }
 </style>
