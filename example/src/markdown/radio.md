@@ -21,6 +21,7 @@
 <cat-radio v-model="radio" label="1">单选1</cat-radio>
 <cat-radio v-model="radio" label="2">单选2</cat-radio>
 
+
 <p>你喜欢吃啥</p>
 <cat-radio v-model="radio2" label="1">黄焖鸡</cat-radio>
 <cat-radio v-model="radio2" label="2">沙县小吃</cat-radio>
@@ -39,6 +40,114 @@
 ```
 :::
 
+## 单选组合
+
+适用于在多个互斥的选项中选择的场景
+
+@change为单选组合值发生改变的时触发的回调函数, 返回值data为Radio label属性的值
+
+:::demo
+```html
+<cat-radio-group :options="radioGruops1" v-model="radioGruop1" :disabled="disabledGroup1" @change="radioGroup1"></cat-radio-group>
+<p>当前选择: {{ radioGruop1 }}</p>
+<cat-button size="small" type="danger" @click="disabledGroup1 = !disabledGroup1">切换禁用</cat-button>
+
+```
+```js
+<script>
+export default {
+  data () {
+    return {
+      disabledGroup: false,
+      radioGruop1: '',
+      radioGruops1: [
+        { label: 'Apple', value: 'Apple' },
+        { label: 'Pear', value: 'Pear' },
+        { label: 'Orange', value: 'Orange' }
+      ]
+    }
+  },
+  methods: {
+    radioGroup1 (data) {
+      console.log('单选按钮组的回调函数, 当前值为' + data)
+    }
+  }
+}
+</script>
+```
+:::
+
+## 单选按钮组合
+
+按钮样式的单选组合。
+
+@change为单选组合值发生改变的时触发的回调函数, 返回值data为Radio label属性的值
+
+size 为按钮大小  small normal large 默认为normal
+
+disabled 和 size 都以选项为主, 整体为辅， 如果子项里面不存在， 才会去选择整体的。
+:::demo
+```html
+<cat-radio-group :options="radioGruops2" v-model="radioGruop2" :disabled="disabledGroup2" @change="radioGroup2" type="button" size="samll"></cat-radio-group>
+<cat-radio-group :options="radioGruops2" v-model="radioGruop2" :disabled="disabledGroup2"  type="button" size="normal"></cat-radio-group>
+<cat-radio-group :options="radioGruops2" v-model="radioGruop2" :disabled="disabledGroup2" type="button" size="large"></cat-radio-group>
+<p>当前选择: {{ radioGruop2 }}</p>
+<cat-button size="small" type="danger" @click="disabledGroup2 = !disabledGroup2">切换禁用</cat-button>
+```
+```js
+<script>
+export default {
+  data () {
+    return {
+      disabledGroup2: false,
+      radioGruop2: 'Apple',
+      radioGruops2: [
+        { label: '上海', text: '上海' },
+        { label: '北京', text: '北京' },
+        { label: '深圳', text: '深圳' }
+      ]
+    }
+  },
+  methods: {
+    radioGroup2 (data) {
+      console.log('单选按钮组的回调函数, 当前值为' + data)
+    }
+  }
+}
+</script>
+
+```
+:::
+
+## Radio 参数
+
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
+|---------- |-------------- |---------- |--------------------------------  |-------- |
+| label | Radio的value | `string` , `number` , `boolean` | - | - |
+| name | 原生属性 | `string` | - | - |
+| disabled | 禁止点击 | Boolean | `true`, `false` | false |
+
+## RadioButton 参数
+
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
+|---------- |-------------- |---------- |--------------------------------  |-------- |
+| label | Radio的value | `string` , `number` , `boolean` | - | - |
+| name | 原生属性 | `string` | - | - |
+| disabled | 禁止点击 | Boolean | `true`, `false` | false |
+| size | 按钮大小 | string | `small`, `normal` , `large` | normal |
+
+
+## RadioGroup 参数
+
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
+|---------- |-------------- |---------- |--------------------------------  |-------- |
+| options | radio数据 子项：label- 对应value, text - 对应显示文字， size, disabled | Array | - | - |
+| disabled | 禁止点击 | Boolean | `true`, `false` | false |
+| size | 按钮大小， 仅是单选按钮时生效 | string | `small`, `normal` , `large` | normal |
+| type | 单选类型 | string | ``, `button` | - | -|
+| @change | 回调函数 | function | - | 返回当前选择的radio的value|
+
+
 
 <script>
 export default {
@@ -48,7 +157,29 @@ export default {
       radio2: '',
       radio3: 1,
       radio4: '',
-      disabled3: true
+      disabled3: true,
+      disabledGroup1: false,
+      radioGruop1: '',
+      radioGruops1: [
+        { label: 'Apple', text: 'Apple' },
+        { label: 'Pear', text: 'Pear' },
+        { label: 'Orange', text: 'Orange' }
+      ],
+      disabledGroup2: false,
+      radioGruop2: 'Apple',
+      radioGruops2: [
+      { label: '上海', text: '上海' },
+      { label: '北京', text: '北京' },
+      { label: '深圳', text: '深圳' }
+      ]
+    }
+  },
+  methods: {
+    radioGroup1 (data) {
+      console.log('单选组的回调函数, 当前值为' + data)
+    },
+    radioGroup2 (data) {
+      console.log('单选按钮组的回调函数, 当前值为' + data)
     }
   }
 }
@@ -58,5 +189,10 @@ export default {
   p {
     padding: 10px 0;
     line-height: 35px;
+  }
+
+  .cat-radio-group {
+    display: block;
+    margin-bottom : 16px;
   }
 </style>

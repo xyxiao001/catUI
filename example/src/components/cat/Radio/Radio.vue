@@ -43,8 +43,8 @@ export default {
     radio (radio) {
       this.$emit('input', radio)
     },
-    value (val) {
-      this.radio = val
+    value (value) {
+      this.radio = value
     }
   },
   props: {

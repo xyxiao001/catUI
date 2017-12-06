@@ -102,6 +102,7 @@ export default {
     }
   },
   mounted () {
+    document.title = '组件'
   }
 }
 </script>

@@ -117,9 +117,17 @@
 
 .at-markdown>section pre {
 	margin: 16px 0;
-	padding: 16px;
+	padding: 0 16px;
 	background-color: #F7F7F7;
 	overflow: auto
+}
+
+.at-markdown>section pre:first-child {
+	padding-top: 16px;
+}
+
+.at-markdown>section pre:last-child {
+	padding-bottom: 16px;
 }
 
 .at-markdown>section pre code {

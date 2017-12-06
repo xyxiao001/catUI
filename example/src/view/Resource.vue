@@ -18,6 +18,9 @@ export default {
   },
   components: {
     Navbar
+  },
+  mounted () {
+    document.title = '资源'
   }
 }
 </script>

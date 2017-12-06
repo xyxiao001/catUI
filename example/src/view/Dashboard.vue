@@ -29,6 +29,9 @@ export default {
   },
   components: {
     Navbar
+  },
+  mounted () {
+    document.title = 'catUI'
   }
 }
 </script>
