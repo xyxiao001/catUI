@@ -19,6 +19,7 @@ import Icon from '@/markdown/icon.md'
 import Input from '@/markdown/input.md'
 import InputNumber from '@/markdown/inputNumber.md'
 import Radio from '@/markdown/Radio.md'
+import Checkbox from '@/markdown/Checkbox.md'
 
 Vue.use(Router)
 
@@ -79,6 +80,11 @@ export default new Router({
           path: 'radio',
           name: 'Radio',
           component: Radio
+        },
+        {
+          path: 'checkbox',
+          name: 'Checkbox',
+          component: Checkbox
         }
       ]
     },

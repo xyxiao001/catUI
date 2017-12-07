@@ -85,7 +85,7 @@ export default {
 
 size 为按钮大小  small normal large 默认为normal
 
-disabled 和 size 都以选项为主, 整体为辅， 如果子项里面不存在， 才会去选择整体的。
+disabled 和 size 都以按钮组为主, 子项为辅， 如果整体是禁用， 那么子项也是被禁的
 :::demo
 ```html
 <cat-radio-group :options="radioGruops2" v-model="radioGruop2" :disabled="disabledGroup2" @change="radioGroup2" type="button" size="samll"></cat-radio-group>
@@ -104,7 +104,9 @@ export default {
       radioGruops2: [
         { label: '上海', text: '上海' },
         { label: '北京', text: '北京' },
-        { label: '深圳', text: '深圳' }
+        { label: '深圳', text: '深圳' },
+        { label: '默认被禁', text: '默认被禁', disabled: true },
+        { label: '杭州', text: '杭州' }
       ]
     }
   },
@@ -168,9 +170,11 @@ export default {
       disabledGroup2: false,
       radioGruop2: 'Apple',
       radioGruops2: [
-      { label: '上海', text: '上海' },
-      { label: '北京', text: '北京' },
-      { label: '深圳', text: '深圳' }
+        { label: '上海', text: '上海' },
+        { label: '北京', text: '北京' },
+        { label: '深圳', text: '深圳' },
+        { label: '默认被禁', text: '默认被禁', disabled: true },
+        { label: '杭州', text: '杭州' }
       ]
     }
   },

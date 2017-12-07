@@ -83,7 +83,12 @@ export default {
                 {
                   name: 'Radio',
                   text: 'Radio',
-                  tips: '单选框'
+                  tips: '单项选择框'
+                },
+                {
+                  name: 'Checkbox',
+                  text: 'Checkbox',
+                  tips: '多项选择框'
                 }
               ]
             }

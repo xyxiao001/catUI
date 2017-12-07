@@ -96,6 +96,10 @@ export default {
       padding: 9px 15px;
       font-size: 14px;
       border-radius: 0;
+
+      &:hover {
+        color: $B50;
+      }
     }
 
     &:first-child {
@@ -117,6 +121,17 @@ export default {
         background-color: $B50;
         border-color: $B50;
         color: $G20;
+        box-shadow: -1px 0 0 0 $B50;
+
+        &:hover {
+          color: $G20;
+        }
+      }
+
+      &:first-child {
+        .cat-radio-button-inner {
+          border-left: 1px solid $B50;
+        }
       }
     }
 
@@ -135,9 +150,17 @@ export default {
         color: $G80;
         background-color: $G50;
 
+        &:hover {
+          color: $G80;
+        }
+
         &-checked {
           color: $G20;
           background-color: $B30;
+          box-shadow: 0 0 0 0;
+          &:hover {
+            color: $G20;
+          }
         }
       }
     }

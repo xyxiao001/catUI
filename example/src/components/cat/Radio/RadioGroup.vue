@@ -4,7 +4,7 @@
       v-if="type !== 'button'"
       v-for="item in options"
       :key="item.value"
-      :disabled="disabled"
+      :disabled="disabled ? disabled : item.disabled"
       :label="item.label"
       :name="item.name"
       v-model="current"
@@ -16,10 +16,10 @@
       v-if="type === 'button'"
       v-for="item in options"
       :key="item.value"
-      :disabled="item.disabled ? item.disabled : disabled"
+      :disabled="disabled ? disabled : item.disabled"
       :label="item.label"
       :name="item.name"
-      :size="item.size ? item.size : size"
+      :size="size ? size : item.size"
       v-model="current"
     >
       {{item.text}}
