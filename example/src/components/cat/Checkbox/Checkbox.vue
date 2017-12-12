@@ -15,6 +15,7 @@
         v-model="isChecked"
         :name="name"
         :disabled="disabled"
+        :value="label"
         class="cat-checkbox-input"
       />
       <span class="cat-checkbox-inner"></span>
@@ -34,8 +35,8 @@ export default {
     }
   },
   watch: {
-    isChecked (checkbox) {
-      this.$emit('input', checkbox)
+    isChecked (val) {
+      this.$emit('change', val ? this.label : '')
     },
     checked (checked) {
       this.isChecked = checked
@@ -43,6 +44,10 @@ export default {
   },
   props: {
     name: String,
+    label: {
+      type: [Boolean, String],
+      required: true
+    },
     checked: {
       type: Boolean,
       default: false

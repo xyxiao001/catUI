@@ -17,9 +17,9 @@
 :::demo
 ```html
 <p>你平时无聊时喜欢干啥子?</p>
-<cat-checkbox v-model="checked1">看电视</cat-checkbox>
-<cat-checkbox v-model="checked2">打游戏</cat-checkbox>
-<cat-checkbox v-model="checked3">听歌</cat-checkbox>
+<cat-checkbox v-model="checked1" label="看电视">看电视</cat-checkbox>
+<cat-checkbox v-model="checked2" label="打游戏">打游戏</cat-checkbox>
+<cat-checkbox v-model="checked3" label="听歌">听歌</cat-checkbox>
 ```
 :::
 
@@ -29,9 +29,12 @@ disabled
 
 :::demo
 ```html
-<cat-checkbox v-model="checked4" :checked="checked4" :disabled="disabled1">禁用</cat-checkbox>
+<cat-checkbox v-model="checked4" :checked="checked4" :disabled="disabled1" label="hello" @change="handleChange1">
+  {{disabled1 ? '禁用' : '不禁用'}}
+</cat-checkbox>
 <cat-button size="small" type="danger" @click="disabled1 = !disabled1">切换禁用</cat-button>
 <cat-button size="small" type="primary" @click="checked4 = !checked4">切换选中</cat-button>
+<p>我是回调函数回来的checkbox value的值：{{checkedTest}}</p>
 ```
 :::
 
@@ -65,8 +68,14 @@ export default {
         checked1: false,
         checked2: false,
         checked3: false,
-        checked4: true,
-        disabled1: true
+        checked4: false,
+        checkedTest: '',
+        disabled1: false
+      }
+    },
+    methods: {
+      handleChange1 (val) {
+        this.checkedTest = val
       }
     }
   }
@@ -74,6 +83,6 @@ export default {
 
 <style lang="scss" scoped>
  p {
-   padding-bottom : 16px;
+   padding: 16px 0;
  }
 </style>
