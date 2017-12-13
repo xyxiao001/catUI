@@ -44,7 +44,8 @@ disabled
 disabled 以按钮组为主, 子项为辅， 如果整体是禁用， 那么子项也是被禁的
 :::demo
 ```html
-
+<p>你喜欢吃什么？</p>
+<cat-checkbox-group v-model="lists1" :options="options1"></cat-checkbox-group>
 ```
 ```js
 <script>
@@ -70,7 +71,23 @@ export default {
         checked3: false,
         checked4: false,
         checkedTest: '',
-        disabled1: false
+        disabled1: false,
+        lists1: [],
+        options1: [
+          {
+            label: '冰淇淋',
+            text: '冰淇淋'
+
+          },
+          {
+            label: '鸡翅',
+            text: '鸡翅'
+          },
+          {
+            label: '周黑鸭',
+            text: '周黑鸭'
+          }
+        ]
       }
     },
     methods: {
