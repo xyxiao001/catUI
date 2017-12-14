@@ -7,7 +7,8 @@
       :disabled="disabled ? disabled : item.disabled"
       :label="item.label"
       :name="item.name"
-      v-model="current"
+      :checked="item.checked"
+      @change="itemChange"
     >
       {{item.text}}
     </cat-checkbox>
@@ -18,10 +19,10 @@
 import Checkbox from './Checkbox'
 
 export default {
-  name: 'catCheckboxboxGroup',
+  name: 'catCheckboxGroup',
   data () {
     return {
-      current: this.value
+      lists: []
     }
   },
   props: {
@@ -50,16 +51,21 @@ export default {
     event: 'change'
   },
   watch: {
-    current (value) {
-      console.log(value)
-      this.$emit('change', value)
-    },
-    value (value) {
-      this.current = value
-    }
   },
   components: {
     catCheckbox: Checkbox
+  },
+  methods: {
+    itemChange (val, label) {
+      let arr = this.lists
+      if (val === label) {
+        arr.push(label)
+      } else {
+        arr = arr.filter((v, i) => v !== label)
+      }
+      this.lists = arr
+      this.$emit('change', arr)
+    }
   }
 }
 </script>

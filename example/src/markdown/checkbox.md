@@ -46,12 +46,61 @@ disabled 以按钮组为主, 子项为辅， 如果整体是禁用， 那么子�
 ```html
 <p>你喜欢吃什么？</p>
 <cat-checkbox-group v-model="lists1" :options="options1"></cat-checkbox-group>
+<p>当前选中: <span v-for="item in lists1"> {{item}} </span></p>
 ```
 ```js
 <script>
 export default {
   data () {
     return {
+      lists1: [],
+      options1: [
+        {
+          label: '冰淇淋',
+          text: '冰淇淋',
+          checked: true,
+          disabled: true
+        },
+        {
+          label: '周黑鸭',
+          text: '周黑鸭',
+          checked: true
+        },
+        {
+          label: '巧克力',
+          text: '巧克力',
+          disabled: true
+        },
+        {
+          label: '鸡排',
+          text: '鸡排'
+        }
+      ]
+    }
+  },
+  methods: {
+  }
+}
+</script>
+```
+:::
+
+:::demo
+```html
+<!-- <p>indeterminate 属性用以表示 checkbox 的不确定状态，一般用于实现全选的效果</p> -->
+<p>选择你想喝的饮料？</p>
+<p><cat-checkbox v-model="checked5" @change="handleChange2" label="checkAll">全选</cat-checkbox></p>
+<cat-checkbox-group v-model="lists2" :options="options2" @change="handleChange3"></cat-checkbox-group>
+<p>当前选中: <span v-for="item in lists2"> {{item}} </span></p>
+```
+```js
+<script>
+export default {
+  data () {
+    return {
+      lists2: [],
+      options2: [
+      ]
     }
   },
   methods: {
@@ -76,23 +125,56 @@ export default {
         options1: [
           {
             label: '冰淇淋',
-            text: '冰淇淋'
-
-          },
-          {
-            label: '鸡翅',
-            text: '鸡翅'
+            text: '冰淇淋',
+            checked: true,
+            disabled: true
           },
           {
             label: '周黑鸭',
-            text: '周黑鸭'
+            text: '周黑鸭',
+            checked: true
+          },
+          {
+            label: '巧克力',
+            text: '巧克力',
+            disabled: true
+          },
+          {
+            label: '鸡排',
+            text: '鸡排'
           }
-        ]
+        ],
+        lists2: [],
+        options2: [
+          {
+            label: '雪碧',
+            text: '雪碧'
+          },
+          {
+            label: '可乐',
+            text: '可乐'
+          },
+          {
+            label: '养乐多',
+            text: '养乐多'
+          },
+          {
+            label: '加多宝',
+            text: '加多宝'
+          },
+        ],
+        checked5: false
       }
     },
     methods: {
       handleChange1 (val) {
         this.checkedTest = val
+      },
+      handleChange2 (val) {
+        console.log(val)
+      },
+      handleChange3 (val) {
+        console.log(val)
       }
     }
   }

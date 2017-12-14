@@ -12,7 +12,7 @@
     ]">
       <input
         type="checkbox"
-        v-model="isChecked"
+        v-model="model"
         :name="name"
         :disabled="disabled"
         :value="label"
@@ -34,12 +34,24 @@ export default {
       isChecked: this.checked
     }
   },
+  computed: {
+    model: {
+      get () {
+        return this.isChecked
+      },
+
+      set (val) {
+        this.isChecked = val
+      }
+    }
+  },
   watch: {
     isChecked (val) {
-      this.$emit('change', val ? this.label : '')
+      this.$emit('change', val ? this.label : '', this.label)
     },
-    checked (checked) {
-      this.isChecked = checked
+    checked (val) {
+      this.isChecked = val
+      this.$emit('change', val ? this.label : '', this.label)
     }
   },
   props: {
@@ -53,6 +65,11 @@ export default {
       default: false
     },
     disabled: Boolean
+  },
+  mounted () {
+    if (this.checked) {
+      this.$emit('change', this.label, this.label)
+    }
   }
 }
 </script>
