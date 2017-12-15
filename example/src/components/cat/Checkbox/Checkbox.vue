@@ -39,19 +39,22 @@ export default {
       get () {
         return this.isChecked
       },
-
       set (val) {
         this.isChecked = val
       }
     }
   },
+  model: {
+    prop: 'checked',
+    event: 'input'
+  },
   watch: {
     isChecked (val) {
+      this.$emit('input', val)
       this.$emit('change', val ? this.label : '', this.label)
     },
     checked (val) {
       this.isChecked = val
-      this.$emit('change', val ? this.label : '', this.label)
     }
   },
   props: {
@@ -65,11 +68,6 @@ export default {
       default: false
     },
     disabled: Boolean
-  },
-  mounted () {
-    if (this.checked) {
-      this.$emit('change', this.label, this.label)
-    }
   }
 }
 </script>

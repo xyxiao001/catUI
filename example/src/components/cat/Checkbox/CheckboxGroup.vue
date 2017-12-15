@@ -1,16 +1,29 @@
 <template>
   <div class="cat-checkbox-group">
     <cat-checkbox
-      v-if="type !== 'button'"
+      v-if="item.label"
       v-for="item in options"
       :key="item.value"
       :disabled="disabled ? disabled : item.disabled"
       :label="item.label"
-      :name="item.name"
+      :name="item.name || item.label"
       :checked="item.checked"
       @change="itemChange"
     >
-      {{item.text}}
+      {{item.text || item}}
+    </cat-checkbox>
+
+    <cat-checkbox
+      v-if="!item.label"
+      v-for="item in options"
+      :key="item.value"
+      :disabled="disabled ? disabled : item.disabled"
+      :label="item"
+      :name="item"
+      :checked="lists.includes(item)"
+      @change="itemChange"
+    >
+      {{item}}
     </cat-checkbox>
   </div>
 </template>
@@ -22,14 +35,19 @@ export default {
   name: 'catCheckboxGroup',
   data () {
     return {
-      lists: []
+      lists: this.defaultChecked
     }
+  },
+  model: {
+    prop: 'defaultChecked',
+    event: 'change'
   },
   props: {
     type: {
       type: String,
       default: 'checkbox'
     },
+    defaultChecked: Array,
     options: {
       type: Array,
       required: true
@@ -45,12 +63,6 @@ export default {
       type: String,
       default: 'normal'
     }
-  },
-  model: {
-    prop: 'value',
-    event: 'change'
-  },
-  watch: {
   },
   components: {
     catCheckbox: Checkbox

@@ -42,6 +42,8 @@ disabled
 
 方便的从数组生成 Checkbox 组
 disabled 以按钮组为主, 子项为辅， 如果整体是禁用， 那么子项也是被禁的
+
+#### 第一种通过比较复杂的形式 可以控制选中 禁用等
 :::demo
 ```html
 <p>你喜欢吃什么？</p>
@@ -85,22 +87,23 @@ export default {
 ```
 :::
 
+
+#### 第二张  简单的通过两个数组 实现全选
 :::demo
 ```html
-<!-- <p>indeterminate 属性用以表示 checkbox 的不确定状态，一般用于实现全选的效果</p> -->
 <p>选择你想喝的饮料？</p>
-<p><cat-checkbox v-model="checked5" @change="handleChange2" label="checkAll">全选</cat-checkbox></p>
-<cat-checkbox-group v-model="lists2" :options="options2" @change="handleChange3"></cat-checkbox-group>
-<p>当前选中: <span v-for="item in lists2"> {{item}} </span></p>
+<p><cat-checkbox v-model="checkedAll"  @change="handleChange2" label="checkAll">全选</cat-checkbox></p>
+<cat-checkbox-group v-model="checkedLists" :options="options2" @change="handleChangeItem"></cat-checkbox-group>
+<p>当前选中: <span v-for="item in checkedLists"> {{item}} </span></p>
 ```
 ```js
 <script>
 export default {
   data () {
     return {
-      lists2: [],
-      options2: [
-      ]
+      checkedLists: ['雪碧'],
+      options2: ['加多宝', '雪碧', '可乐', '酸奶'],
+      checkedAll: false
     }
   },
   methods: {
@@ -144,26 +147,9 @@ export default {
             text: '鸡排'
           }
         ],
-        lists2: [],
-        options2: [
-          {
-            label: '雪碧',
-            text: '雪碧'
-          },
-          {
-            label: '可乐',
-            text: '可乐'
-          },
-          {
-            label: '养乐多',
-            text: '养乐多'
-          },
-          {
-            label: '加多宝',
-            text: '加多宝'
-          },
-        ],
-        checked5: false
+        checkedLists: ['雪碧'],
+        options2: ['加多宝', '雪碧', '可乐', '酸奶'],
+        checkedAll: false
       }
     },
     methods: {
@@ -171,10 +157,10 @@ export default {
         this.checkedTest = val
       },
       handleChange2 (val) {
-        console.log(val)
+        this.checkedLists = val === '' ? [] : this.options2
       },
-      handleChange3 (val) {
-        console.log(val)
+      handleChangeItem (val) {
+        this.checkedAll = this.checkedLists.length === this.options2.length
       }
     }
   }
