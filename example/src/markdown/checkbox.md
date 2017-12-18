@@ -29,7 +29,7 @@ disabled
 
 :::demo
 ```html
-<cat-checkbox v-model="checked4" :checked="checked4" :disabled="disabled1" label="hello" @change="handleChange1">
+<cat-checkbox v-model="checked4" :disabled="disabled1" label="hello" @change="handleChange1">
   {{disabled1 ? '禁用' : '不禁用'}}
 </cat-checkbox>
 <cat-button size="small" type="danger" @click="disabled1 = !disabled1">切换禁用</cat-button>
