@@ -97,7 +97,7 @@ export default {
         let arr
         arr = this.options.filter((v, i) => v.checked)
         arr = arr.map((v, i) => v.label)
-        this.$emit('change', arr)
+        this.$emit('input', arr)
       }
     }
   },
