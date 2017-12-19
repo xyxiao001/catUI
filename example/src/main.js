@@ -30,10 +30,9 @@ Vue.component('catRadio', Radio)
 Vue.component('catRadioGroup', RadioGroup)
 Vue.component('catRadioButton', RadioButton)
 
-import { Checkbox, CheckboxGroup, CheckboxButton } from '@/components/cat/Checkbox'
+import { Checkbox, CheckboxGroup } from '@/components/cat/Checkbox'
 Vue.component('catCheckbox', Checkbox)
 Vue.component('catCheckboxGroup', CheckboxGroup)
-Vue.component('catCheckboxButton', CheckboxButton)
 
 import '@/assets/hjs.scss'
 import '@/assets/markdown.scss'

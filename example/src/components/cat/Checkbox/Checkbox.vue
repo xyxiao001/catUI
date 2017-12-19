@@ -2,13 +2,15 @@
   <label class="cat-checkbox-wrapper"
     :class="[
       isChecked ? 'cat-checkbox-wrapper-checked' : '',
-      disabled ? 'cat-checkbox-wrapper-disabled' : ''
+      disabled ? 'cat-checkbox-wrapper-disabled' : '',
+      indeterminate ? 'cat-checkbox-wrapper-indeterminate' : ''
     ]"
   >
     <span class="cat-checkbox"
       :class="[
         isChecked ? 'cat-checkbox-checked' : '',
-        disabled ? 'cat-checkbox-disabled' : ''
+        disabled ? 'cat-checkbox-disabled' : '',
+        indeterminate ? 'cat-checkbox-indeterminate' : ''
     ]">
       <input
         type="checkbox"
@@ -31,7 +33,8 @@ export default {
   name: 'catCheckbox',
   data: function () {
     return {
-      isChecked: this.checked
+      isChecked: this.checked,
+      canChange: true
     }
   },
   computed: {
@@ -40,6 +43,9 @@ export default {
         return this.isChecked
       },
       set (val) {
+        if (val) {
+          this.canChange = true
+        }
         this.isChecked = val
       }
     }
@@ -51,9 +57,17 @@ export default {
   watch: {
     isChecked (val) {
       this.$emit('input', val)
-      this.$emit('change', val ? this.label : '', this.label)
+      if (this.canChange) {
+        this.$emit('change', val ? this.label : '', this.label)
+      }
     },
     checked (val) {
+      if (this.indeterminate !== null && !val) {
+        // 全选同时是外部触发改变 则显示一半选中
+        this.canChange = false
+      } else {
+        this.canChange = true
+      }
       this.isChecked = val
     }
   },
@@ -67,7 +81,14 @@ export default {
       type: Boolean,
       default: false
     },
-    disabled: Boolean
+    indeterminate: {
+      type: Boolean,
+      default: null
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
@@ -147,7 +168,7 @@ export default {
       }
     }
 
-    &-checked{
+    &-checked {
       .cat-checkbox-inner {
         border-color: $B50;
         background-color: $B50;
@@ -155,6 +176,25 @@ export default {
         &:after {
           transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
           transform: rotate(45deg) scale(1);
+          opacity: 1;
+        }
+      }
+    }
+
+    &-indeterminate {
+      .cat-checkbox-inner {
+        border-color: $B50;
+        background-color: $B50;
+
+        &:after {
+          top: 6px;
+          left: 2px;
+          width: 10px;
+          height: 2px;
+          border: none;
+          background: white;
+          transition: all 0.1s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+          transform: scale(1);
           opacity: 1;
         }
       }

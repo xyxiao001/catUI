@@ -40,7 +40,19 @@ export default {
   },
   model: {
     prop: 'defaultChecked',
-    event: 'change'
+    event: 'input'
+  },
+  watch: {
+    options () {
+      this.renderDefault()
+    },
+    defaultChecked (val) {
+      this.lists = val
+    },
+    lists (val) {
+      this.$emit('input', val)
+      this.$emit('change', val)
+    }
   },
   props: {
     type: {
@@ -75,9 +87,22 @@ export default {
       } else {
         arr = arr.filter((v, i) => v !== label)
       }
-      this.lists = arr
-      this.$emit('change', arr)
+      arr = [...new Set(arr)]
+      this.$emit('input', arr)
+      this.$emit('change', val)
+    },
+
+    renderDefault () {
+      if (this.options[0].label) {
+        let arr
+        arr = this.options.filter((v, i) => v.checked)
+        arr = arr.map((v, i) => v.label)
+        this.$emit('change', arr)
+      }
     }
+  },
+  mounted () {
+    this.renderDefault()
   }
 }
 </script>
